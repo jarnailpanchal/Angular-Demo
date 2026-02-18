@@ -1,0 +1,49 @@
+<p>profil-details works!</p>
+<p>Roll No: {{ rollNo }}</p>
+<p>Name: {{ name }}</p>
+<form [formGroup]="profileDetail" (ngSubmit)="submit()">
+    <label>User Name</label>
+    <br>
+    <input type="text" formControlName = "userName">
+    <span *ngIf="profileDetail.get('userName')?.hasError('required')">User Name is required</span>
+    <br><br>
+    
+    
+    <label>Password</label>
+    <br>
+    <input type="text" formControlName = "password">
+    <br><br>
+    <label>Email</label>
+    <br><br>
+    <input type="text" formControlName = "email">
+    <br><br>
+    <button type="submit">Get Detail</button>
+    <button type = "button" (click) = "setValues()">Set Detail</button>
+</form>
+
+<h1>Entered User Name : {{userNameSet}}</h1>
+<h1>Entered Password : {{passwordSet}}</h1>
+@for(user of users;track user) {
+    <app-parent-to-child [name]="passToChild" [city]="city" [user]="user"></app-parent-to-child>
+}
+
+<!--or you can use <app-parent-to-child [name]="selectedName.value" [city]="city"></app-parent-to-child>-->
+<select #selectedName (change) = "setSelectedName(selectedName.value)">
+    <option value="Jarnail">Jarnail</option>
+    <option value="Karnail">Karnail</option>
+    <option value="Jyoti">Jyoti</option>
+</select>
+
+<button (click)="getChildUser()" >Access Child</button>
+
+<app-parent-to-child></app-parent-to-child>
+
+@for(parentUser of parentUsers;track parentUsers) {
+   <li>{{parentUser | uppercase}}</li>
+}
+
+<h1>{{myDate | date:'yyyy/MM/dd'}}</h1>
+<h1>{{money | currency}}</h1>
+<h1>{{money | currency:'INR'}}</h1>
+<h1>{{money | currency:'EUR'}}</h1>
+<h1>{{money | currency}} is equal to {{money | currencyConverter:50 | currency:'INR'}}</h1>

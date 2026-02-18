@@ -1,0 +1,29 @@
+<p>profile works!</p>
+<h1>Profiler Name is : {{profilerName}}</h1>
+<button (click) = "sendProfilerDetails()">Send Detail</button>
+@for(record of profileDetailsData; track record) {
+    <div style="display: flex; justify-content: space-between; width : 500px">
+    <h1>User Name : {{record.name}}</h1>
+    <h1>User Band : {{record.band}}</h1>
+    </div>
+}
+
+<form #formData="ngForm" (submit)="saveUser(formData.value)">
+    <input type="text" placeholder="enter first name" name = "firstName" [ngModel]="firstName">
+    <br><br>
+    <input type="text" placeholder="enter roll no" name = "rollNo" [ngModel] = "rollNo">
+    <br><br>
+    <button>Add User</button>
+</form>
+
+@for(user of userData;track user) {
+    <div>
+        <ul>
+            <li>
+                my name is : {{user.firstName}} : my roll number is : {{user.rollNo}}
+                <button (click)="deleteUser(user.firstName)">Delete</button>
+                <button (click)="updateUser(user)">Update</button>
+            </li>
+        </ul>
+    </div>
+}

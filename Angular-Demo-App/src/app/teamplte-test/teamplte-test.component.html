@@ -1,0 +1,15 @@
+<p>teamplte-test works!</p>
+<form #templateTest="ngForm" (ngSubmit)="submitUserDetail(templateTest)">
+    <label>User Name</label>
+    <br>
+    <input #name="ngModel" type="text" name="name" required ngModel />
+    <span style="color: red;">*</span>
+    <span *ngIf="name.invalid && name.touched"> User Name is required</span>
+    <br><br>
+    <label>Password</label>
+    <br>
+    <input type="text" #password="ngModel" name="password" required ngModel>
+    <br><br>
+    <button type="submit">Save User Data</button>
+
+</form>
